@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     public Sprite selectedSprite;
     public int selectedGoldCost;
     public int selectedGemCost;
+    public float selectedTimeGen;
+    public int selectedGoldGen;
+    public int selectedGemGen;
 
     public Text GoldResText;
     public int GoldRes;
@@ -58,17 +61,22 @@ public class GameManager : MonoBehaviour
                 buildingName.Append("_");
                 buildingName.Append(j);
 
-                
-             
-
                 image.name = buildingName.ToString();
             }
         }
     }
 
-    private void Update()
+
+    void Update()
     {
+      //AddGold
       GoldResText.text = GoldRes.ToString();
       GemResText.text = GemRes.ToString();
+    }
+
+    public void AddGold(int goldAmount)
+    {
+        GoldRes += goldAmount;
+        GoldResText.text = GoldRes.ToString();
     }
 }

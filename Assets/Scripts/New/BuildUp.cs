@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class BuildUp : MonoBehaviour
 {
+    float currentTimer = 0f;
+    bool StartTimer=false;
+
     public void BuildUpProcess()
     {
         var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -24,6 +27,7 @@ public class BuildUp : MonoBehaviour
 
                     gameManager.GemRes -= gameManager.selectedGemCost;
                     gameManager.GoldRes -= gameManager.selectedGoldCost;
+                    StartTimer = true;
                 }
                 else
                 {
@@ -40,4 +44,21 @@ public class BuildUp : MonoBehaviour
         else
             Debug.LogError("YOU HAVE TO SELECT AN INVENTORY FIRST");
     }
+
+  /*  void Update()
+    {
+        var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    
+
+        if (StartTimer)
+        {
+            currentTimer += Time.deltaTime;
+            if (currentTimer > gameManager.selectedTimeGen)
+            {
+                currentTimer = 0f;
+                gameManager.GemRes += gameManager.selectedGemGen;
+                gameManager.GoldRes += gameManager.selectedGoldGen;
+            }
+        }
+    }*/
 }
