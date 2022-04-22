@@ -7,11 +7,36 @@ public class BuildUp : MonoBehaviour
 {
     public void BuildUpProcess()
     {
-        Sprite selectedSprite = GameObject.Find("GameManager").GetComponent<GameManager>().selectedSprite;
-        Image selectedObject = Instantiate(GameObject.Find("GameManager").GetComponent<GameManager>().building, this.gameObject.transform);
+        var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        if (selectedSprite != null)
-            this.gameObject.GetComponent<Image>().sprite = selectedSprite;   // selectedObject.GetComponent<Image>().sprite = selectedSprite;
+        Sprite selectedSprite = gameManager.selectedSprite;
+
+        if (gameManager.GemRes >= gameManager.selectedGemCost && gameManager.GoldRes >= gameManager.selectedGoldCost)
+        {
+            if (selectedSprite != null)
+            {
+                //success
+                if (PlayerPrefs.GetInt(this.gameObject.name) == 0)
+                {
+                    Image selectedObject = Instantiate(gameManager.building, this.gameObject.transform);
+                    this.gameObject.GetComponent<Image>().sprite = selectedSprite;   // selectedObject.GetComponent<Image>().sprite = selectedSprite;
+                    PlayerPrefs.SetInt(this.gameObject.name, 1);
+
+                    gameManager.GemRes -= gameManager.selectedGemCost;
+                    gameManager.GoldRes -= gameManager.selectedGoldCost;
+                }
+                else
+                {
+                    Debug.Log("YOU HAVE ALREADY BUILTY");
+                }
+            }
+            else
+            {
+                Debug.Log("INEFFICENT GEM AND GOLD");
+            }
+
+            
+        }
         else
             Debug.LogError("YOU HAVE TO SELECT AN INVENTORY FIRST");
     }

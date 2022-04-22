@@ -25,9 +25,15 @@ public class GameManager : MonoBehaviour
     public int selectedGoldCost;
     public int selectedGemCost;
 
+    public Text GoldResText;
+    public int GoldRes;
+    public Text GemResText;
+    public int GemRes;
+
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.DeleteAll();
         buildingCurrentSizeX = building.GetComponent<RectTransform>().sizeDelta.x;
         buildingCurrentSizeY = building.GetComponent<RectTransform>().sizeDelta.y;
 
@@ -52,8 +58,17 @@ public class GameManager : MonoBehaviour
                 buildingName.Append("_");
                 buildingName.Append(j);
 
+                
+             
+
                 image.name = buildingName.ToString();
             }
         }
+    }
+
+    private void Update()
+    {
+      GoldResText.text = GoldRes.ToString();
+      GemResText.text = GemRes.ToString();
     }
 }
