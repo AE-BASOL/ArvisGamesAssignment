@@ -45,7 +45,7 @@ public class BuildUp : MonoBehaviour
             Debug.LogError("YOU HAVE TO SELECT AN INVENTORY FIRST");
     }
 
-  /*  void Update()
+  void Update()
     {
         var gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     
@@ -60,5 +60,5 @@ public class BuildUp : MonoBehaviour
                 gameManager.GoldRes += gameManager.selectedGoldGen;
             }
         }
-    }*/
+    }
 }
